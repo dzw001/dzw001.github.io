@@ -604,9 +604,16 @@
         appKey: '7Sv9UOyrXcR6zFgP0t8AmxND',
         placeholder: 'Just go go',
         avatar:'wavatar',
-        guest_info:guest,
+        guest_info:['nick'],  //此处原本的值为 guest，改为['nick']后评论者在评论时只需提供昵称即可，不再需要提供邮箱等
         pageSize:'10' || 10,
     });
+    //增加以下六行代码用来去除评论框上自带的“power by valine”
+    var infoEle = document.querySelector('#comments .info');
+    if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0){
+      infoEle.childNodes.forEach(function(item) {
+        item.parentNode.removeChild(item);
+      });
+    }
   </script>
 
 
